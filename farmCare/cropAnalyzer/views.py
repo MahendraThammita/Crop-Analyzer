@@ -8,13 +8,18 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
 import pickle
 import pymongo
-client = pymongo.MongoClient('mongodb+srv://CDAScluster:CDASkdu@cluster0.tl0ce.mongodb.net/?retryWrites=true&w=majority')
+import firebase_admin
+from firebase_admin import credentials, storage
+
+
 
 #Define Db Name
 dbname = client['myFirstDatabase']
-
 #Define Collection
 cropsCollection = dbname['crops']
+
+cred = credentials.Certificate("cropAnalyzer/credentials.json")
+firebase_admin.initialize_app(cred,{'storageBucket': 'farmcare-8b04f.appspot.com'}) # connecting to firebase
 
 
 def index(request):
@@ -22,7 +27,6 @@ def index(request):
 
 @csrf_exempt
 def predict(request):
-    testvar = "mahendra"
     if (request.method == 'POST'):
         json_data = json.loads(request.body)
         family = json_data['family']
@@ -33,15 +37,16 @@ def predict(request):
 
     inputChars = np.array([family, temperature, ph, zone, season])
     inputMatrix = inputChars.reshape(1, -1)
-    stringVal = str(predictByModel(inputMatrix)[0])
-    #trainModel(request)
+    #trainModel()
+    stringPred = str(predictByModel(inputMatrix)[0]) 
+    similarCropsJson = getSimilarCropsByPrediction(int(stringPred))
 
-    return HttpResponse(stringVal)
+    return HttpResponse(similarCropsJson)
 
-def trainModel(request):
-
+def trainModel():
     # Data preprocessing - loading initial dataset and treat null values
-    data = pd.read_excel('E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/dataset.xlsx')
+    data = pd.read_excel('https://storage.googleapis.com/farmcare-8b04f.appspot.com/cropAnalyzer/dataset.xlsx')
+    print(data.head())
     data.drop(['RainFall - mm'], axis=1, inplace=True)
     data = data.dropna()
 
@@ -86,21 +91,15 @@ def trainModel(request):
     X = ms.fit_transform(data)
     X = pd.DataFrame(X, columns=[cols])
 
-    pickle.dump(kmeans, open("E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/model.pkl", "wb"))
+    pickle.dump(kmeans, open("cropAnalyzer/model.pkl", "wb"))
+
 
 
 def predictByModel(npArray):
-    model = pickle.load(open("E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/model.pkl", "rb"))
+    model = pickle.load(open("cropAnalyzer/model.pkl", "rb"))
     predicton = model.predict(npArray)
     return predicton
 
-
-def testDb(request):
-    mascot_1={
-        "name": "Sammy",
-        "type" : "Shark"
-    }
-    collection.insert_one(mascot_1)
 
 def getSimilarCrops(request):
     if (request.method == 'GET'):
@@ -122,6 +121,7 @@ def getSimilarCrops(request):
     else:
         return HttpResponse(status=204)
 
+@csrf_exempt
 def addnewCrop(request):
     if (request.method == 'POST'):
         json_data = json.loads(request.body)
@@ -130,4 +130,83 @@ def addnewCrop(request):
         ph = json_data['ph']
         zone = json_data['zone']
         season = json_data['season']
+        familyText = json_data['familyText']
+        temperatureText = json_data['temperatureText']
+        phText = json_data['phText']
+        zoneText = json_data['zoneText']
+        seasonText = json_data['seasonText']
+        cropName = json_data['cropName']
+    
+    newCrop={
+        "Crop": cropName,
+        "Family" : familyText,
+        "Temp - C" : temperatureText,
+        "PH val" : phText,
+        "Zone" : zoneText,
+        "Season" : seasonText,
+    }
+    #Modifying Excel
+    originalDf = pd.read_excel('https://storage.googleapis.com/farmcare-8b04f.appspot.com/cropAnalyzer/dataset.xlsx')
+    originalDf = originalDf.append(newCrop, ignore_index=True)
+    originalDf.to_excel("cropAnalyzer/dataset.xlsx")
+    #Upload file to firebase
+    file_path = "cropAnalyzer/dataset.xlsx"
+    bucket = storage.bucket() # storage bucket
+    blob = bucket.blob(file_path)
+    blob.upload_from_filename(file_path)
+    blob.make_public()
+    print(blob.public_url)
+
+    trainModel()
+
+    inputChars = np.array([family, temperature, ph, zone, season])
+    inputMatrix = inputChars.reshape(1, -1)
+    stringPred = str(predictByModel(inputMatrix)[0])
+
+    newCrop={
+        "Crop": cropName,
+        "Family" : familyText,
+        "Temp - C" : temperatureText,
+        "PH val" : phText,
+        "Zone" : zoneText,
+        "Season" : seasonText,
+        "Predicted_category" : int(stringPred),
+    }
+    #Modifying Database
+    cropsCollection.insert_one(newCrop) 
+    
+    similarCropsJson = getSimilarCropsByPrediction(int(stringPred))
+    return HttpResponse(similarCropsJson)
+    
+    
+
+
+def getSimilarCropsByPrediction(predictedCategory):
+    similarCrops = cropsCollection.find({"Predicted_category":predictedCategory})
+    similarCropNameList = []
+    for crop in similarCrops:
+        similarCropNameList.append(crop['Crop'])
+        jsonResult = json.dumps(similarCropNameList)
+    return jsonResult
+
+
+def getSimilarCropsByName(CropName):
+    if (request.method == 'GET'):
+        json_data = json.loads(request.body)
+        cropName = json_data['CropName']
+    
+    if(cropName is not None and cropName != ""):
+        affevtedCrop = cropsCollection.find_one({"Crop":cropName})
+        if(affevtedCrop is not None):
+            affevtedCropCategory = affevtedCrop['Predicted_category']
+            similarCrops = cropsCollection.find({"Predicted_category":affevtedCropCategory})
+            similarCropNameList = []
+            for crop in similarCrops:
+                similarCropNameList.append(crop['Crop'])
+            jsonResult = json.dumps(similarCropNameList)
+            return HttpResponse(jsonResult , status=200)
+        else:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=204)
     

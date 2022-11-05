@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('predict',views.predict,name='predict'),
-    path('testDb',views.testDb,name='testDb'),
+    path('addnewCrop',views.addnewCrop,name='addnewCrop'),
     path('getSimilarCrops',views.getSimilarCrops,name='getSimilarCrops'),
 ]
