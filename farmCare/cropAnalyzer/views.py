@@ -7,6 +7,15 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
 import pickle
+import pymongo
+client = pymongo.MongoClient('mongodb+srv://CDAScluster:CDASkdu@cluster0.tl0ce.mongodb.net/?retryWrites=true&w=majority')
+
+#Define Db Name
+dbname = client['myFirstDatabase']
+
+#Define Collection
+cropsCollection = dbname['crops']
+
 
 def index(request):
     return HttpResponse("Hello, world.")
@@ -26,9 +35,8 @@ def predict(request):
     inputMatrix = inputChars.reshape(1, -1)
     stringVal = str(predictByModel(inputMatrix)[0])
     #trainModel(request)
-    testOut = 'Sample'
 
-    return HttpResponse("Hello, world. You're inside predict. output --> " + stringVal)
+    return HttpResponse(stringVal)
 
 def trainModel(request):
 
@@ -85,3 +93,41 @@ def predictByModel(npArray):
     model = pickle.load(open("E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/model.pkl", "rb"))
     predicton = model.predict(npArray)
     return predicton
+
+
+def testDb(request):
+    mascot_1={
+        "name": "Sammy",
+        "type" : "Shark"
+    }
+    collection.insert_one(mascot_1)
+
+def getSimilarCrops(request):
+    if (request.method == 'GET'):
+        json_data = json.loads(request.body)
+        cropName = json_data['CropName']
+    
+    if(cropName is not None and cropName != ""):
+        affevtedCrop = cropsCollection.find_one({"Crop":cropName})
+        if(affevtedCrop is not None):
+            affevtedCropCategory = affevtedCrop['Predicted_category']
+            similarCrops = cropsCollection.find({"Predicted_category":affevtedCropCategory})
+            similarCropNameList = []
+            for crop in similarCrops:
+                similarCropNameList.append(crop['Crop'])
+            jsonResult = json.dumps(similarCropNameList)
+            return HttpResponse(jsonResult , status=200)
+        else:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=204)
+
+def addnewCrop(request):
+    if (request.method == 'POST'):
+        json_data = json.loads(request.body)
+        family = json_data['family']
+        temperature = json_data['temperature']
+        ph = json_data['ph']
+        zone = json_data['zone']
+        season = json_data['season']
+    
