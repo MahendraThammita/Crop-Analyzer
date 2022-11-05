@@ -1,0 +1,102 @@
+Crop,Family,Temp - C,PH val,Zone,Season,Predicted_category
+BigOnion,Amaryllidaceae,10.0-25.0,6.0-8.0,dry,yala,2
+Chili,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+RedOnion,Amaryllidaceae,15.0-20.0,6.0-7.0,"dry, intermediate",yala,2
+Corn,Poaceae,25.0-30.0,6.0-7.0,"dry,intermediate",yala,2
+FingerMillet,Poaceae,15.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",1
+SoyBean,Fabaceae,25.0-30.0,6.0-6.5,"dry,intermediate","yala,maha",0
+BlackGram,Fabaceae,20.0-35.0,6.0-7.0,"dry, intermediate","yala,maha",0
+Kaupi,Fabaceae,20.0-35.0,6.0-7.0,"dry,intermediate",yala,2
+Pigeon Pea,Fabaceae,15.0-20.0,5.0-8.0,"dry, intermediate",yala,2
+Potato,Solanaceae,<24,5.0-7.0,"wet, dry",yala,2
+Cassava,Solanaceae,25.0-30.0,5.0-6.0,"dry,wet","yala,maha",1
+SweetPotato,Solanaceae,20.0-40.0,5.0-6.0,"dry,wet,intermediate","yala, maha",1
+Yams,Solanaceae,25.0-30.0,5.0-6.0,"wet, dry","yala,maha",1
+GroundNut,Fabaceae,25.0-30.0,6.0-7.0,"dry,intermediate,wet","yala,maha",0
+Sesame,Pedaliaceae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",1
+Mustard,Brassicaceae,15.0-30.0,6.0-8.0,"dry,intermediate","yala,maha",5
+SunFlower,Asteraceae,>20,6.0-9.0,dry,"yala,maha",3
+Cabbage,Brassicaceae,15.0-20.0,6.0-7.0,wet,maha,3
+Radish,Brassicaceae,10.0-15.0,6.0-8.0,"dry,wet,intermediate","yala,maha",5
+Carrot,Apiaceca,15.0-20.0,6.0-7.0,"dry,wet,intermediate","yala,maha",5
+Tomato,Solanaceae,20.0-25.0,5.0-8.0,"dry,wet,intermediate","yala,maha",4
+Capsicum,Solanaceae,15.0-20.0,5.0-7.0,"dry,intermediate,wet","yala,maha",1
+Brinjal,Solanaceae,20.0-25.0,5.0-6.0,"dry,intermediate","yala,maha",1
+Okra,Malvaceca,20.0-30.0,6.0-7.0,"dry,intermediate","yala,maha",0
+Beans,Fabaceae,<30,5.0-7.0,"intermediate,wet","yala,maha",0
+WingedBean,Fabaceae,15.0-30.0,5.0-8.0,"dry,intermediate,wet","yala,maha",5
+GreenYardLongBean,Fabaceae,20.0-25.0,5.0-7.0,"dry,intermediate,wet","yala,maha",0
+RedYardLongBean,Fabaceae,20.0-25.0,5.0-7.0,"dry,intermediate,wet","yala,maha",0
+Pumpkin,Cucurbitaceae,15.0-30.0,5.0-8.0,"dry,intermediate",yala,2
+Cucumber,Cucurbitaceae,20.0-30.0,6.0-7.0,"dry,wet","yala,maha",3
+SnakeGourd,Cucurbitaceae,20.0-30.0,5.0-8.0,dry,"yala,maha",3
+Luffa,Cucurbitaceae,25.0-30.0,5.0-8.0,"dry,wet,intermediate","yala,maha",0
+BitterGourd,Cucurbitaceae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",0
+BeetRoot,Chenopodiaceae,20.0-30.0,6.0-8.0,"dry,wet,intermediate","yala,maha",5
+AmericanOyster,Agaricaceae,15.0-20.0,5.0-7.0,"dry,wet,intermediate","yala,maha",5
+Leeks,Alliaceae,10.0-25.0,5.0-6.0,"wet,intermediate","yala,maha",5
+Elabatu,Solanaceae,20.0-25.0,5.0-6.0,"dry,intermediate","yala,maha",1
+Thibbatu,Solanaceae,20.0-25.0,5.0-6.0,"dry,intermediate","yala,maha",1
+SpineGourd,Cucurbitaceae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",0
+Lettuce,Asteraceae,<20,6.0-7.0,wet,"yala,maha",3
+IceBurg,Asteraceae,<20,6.0-7.0,wet,"yala,maha",3
+KnolKhol,Brassicaceae,15.0-25.0,6.0-8.0,"dry,wet,intermediate","yala,maha",5
+CauliFlower,Brassicaceae,15.0-20.0,6.0-7.0,wet,"yala,maha",3
+Gotukola,Apiaceca,15.0-30.0,6.0-7.0,"intermediate,wet","yala,maha",5
+Mukunuwenna,Amaranthaceae,15.0-30.0,6.0-7.0,"intermediate,wet","yala,maha",5
+Kathurumurunga,Fabaceae,>27,6.0-7.0,"dry,intermediate","yala,maha",0
+KangKung,Convolvulaceae,<20,6.0-7.0,"wet,intermediate","yala,maha",0
+Abalone,Agaricaceae,15.0-25.0,5.0-7.0,"dry,wet,intermediate","yala,maha",5
+PinkOyster,Agaricaceae,15.0-20.0,5.0-7.0,"dry,wet,intermediate","yala,maha",5
+Mango,Anacardiaceae,25.0-30.0,5.0-8.0,"dry,wet,intermediate","yala,maha",0
+Pineapple,Bromiliceae,20.0-30.0,5.0-6.0,"wet,intermediate","yala,maha",0
+Avocado,Lauraceae,25.0-30.0,5.0-6.0,"intermediate,wet","yala,maha",0
+Banana,Musaceae,15.0-40.0,5.0-7.0,"dry,intermediate,wet","yala,maha",1
+WaterMelon,Cucurbitaceae,>20,5.0-7.0,"dry,intermediate","yala,maha",0
+Jamanaran,Rutaceae,10.0-40.0,5.0-6.0,"dry,wet,intermediate","yala,maha",1
+Duriyan,Bombacaceae,25.0-30.0,5.0-7.0,"wet,intermediate","yala,maha",0
+Papaw,Caricaceae,30.0-35.0,5.0-7.0,"dry,wet,intermediate","yala,maha",0
+Guava,Myrtaceae,20.0-30.0,5.0-7.0,"dry,wet,intermediate","yala,maha",1
+Rambutan,Sapindaceae,20.0-30.0,5.0-7.0,"dry,intermediate","yala,maha",1
+Grapes,Vitaceae,25.0-30.0,6.0-8.0,dry,yala,2
+Woodapple,Rutaceae,25.0-40.0,6.0-9.0,"wet,intermediate,dry","yala,maha",4
+Beli,Rutaceae,25.0-35.0,5.0-10.0,"wet,intermediate,dry","yala,maha",1
+Mangosteen,Clusiaceae,25.0-30.0,5.0-6.0,"wet,intermediate",maha,0
+Pomegranate,Punicaceae,20.0-30.0,5.0-7.0,"dry,wet,intermediate","yala,maha",1
+DragonFruit,Cactaceae,20.0-30.0,6.0-7.0,"dry,intermediate,wet","yala,maha",5
+PassionFruit,Passifloraciae,20.0-30.0,6.0-8.0,"dry,intermediate,wet","yala,maha",4
+Anoda,Annonaceae,20.0-30.0,6.0-8.0,"dry,intermediate,wet","yala,maha",5
+Ugurassa,Flacourtiaceae,10.0-30.0,6.0-7.0,"dry,intermediate,wet","yala,maha",5
+StarFruit,Oxaliadaceae,10.0-20.0,5.0-6.0,intermediate,"yala,maha",1
+Amla,Euphorbiaceae,<46,6.0-10.0,"dry,intermediate","yala,maha",0
+Lawulu,Sapotaceae,10.0-40.0,6.0-7.0,"wet,intermediate","yala,maha",4
+Vanila,Orchidaceae,20.0-30.0,5.0-8.0,wet,"yala,maha",3
+Turmeric,Zingiberaceae,20.0-35.0,5.0-7.0,"wet,intermediate",yala,2
+Papper,Piperaceae,20.0-30.0,5.0-7.0,"wet,intermediate","yala,maha",1
+Nutmeg,Myristiccaceae,20.0-30.0,6.0-7.0,intermediate,"yala,maha",3
+Ginger,Zingiberaceae,10.0-30.0,5.0-7.0,"wet,intermediate",maha,1
+Coffee,Rubiaceae,15.0-30.0,5.0-7.0,"wet, intermediate","yala,maha",1
+Cocoa,Sterculiaceae,25.0-30.0,5.0-7.0,intermediate,"yala,maha",1
+Clove,Mertaceae,20.0-30.0,6.0-7.0,wet,maha,3
+Cinnamon,Lauraceae,25.0-30.0,4.0-6.0,intermediate,"yala,maha",1
+Cardamom,Zingiberaceae,10.0-25.0,4.0-6.0,"wet,intermediate",maha,1
+Betel,Piperaceae,15.0-40.0,5.0-8.0,"wet,dry","yala,maha",1
+Areca Nut,Palmae,25.0-40.0,<7.0,"wet,intermediate","yala,maha",4
+Lemon Grass,Graminae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",0
+Ash plantain,Musaceae,15.0-40.0,6.0-7.0,"dry,intermediate,wet","yala,maha",4
+Breadfruit,Moraceae,15.0-40.0,6.0-7.0,"dry,intermediate",yala,2
+Jackfruit,Moraceae,15.0-40.0,6.0-7.0,"dry,intermediate",yala,2
+Spinach,Amaranthaceae,10.0-15.0,6.0-8.0,"wet,intermediate","yala,maha",5
+Ash Pumpkin,Cucurbitaceae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",0
+Bottle Gourd,Cucurbitaceae,25.0-30.0,5.0-8.0,"dry,intermediate","yala,maha",0
+Green Bell Pepper,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+Red Bell Pepper,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+Yellow Bell Pepper,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+Kochchi,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+Naimiris,Solanaceae,20.0-30.0,6.0-7.0,"dry,wet,intermediate","yala,maha",4
+Artichoke,Asteraceae,<20,6.0-7.0,wet,"yala,maha",3
+Peanut,Fabaceae,25.0-30.0,6.0-7.0,"dry,intermediate","yala,maha",0
+Ambarella,Anacardiaceae,25.0-30.0,5.0-8.0,"dry,wet,intermediate","yala,maha",0
+Tamarind,Fabaceae,15.0-40.0,4.0-9.0,"dry,intermediate","yala,maha",1
+Velvet Tamarind,Fabaceae,15.0-40.0,4.0-9.0,"dry,intermediate","yala,maha",1
+Grape Fruit,Rutaceae,15.0-30.0,6.0-7.0,"dry,intermediate","yala,maha",4
