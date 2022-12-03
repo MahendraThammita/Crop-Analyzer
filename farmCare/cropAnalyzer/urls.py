@@ -7,4 +7,6 @@ urlpatterns = [
     path('predict',views.predict,name='predict'),
     path('addnewCrop',views.addnewCrop,name='addnewCrop'),
     path('getSimilarCrops',views.getSimilarCrops,name='getSimilarCrops'),
+    path('addAlert',views.addAlert,name='addAlert'),
+    path('getCropsList',views.getCropsList,name='getCropsList'),
 ]

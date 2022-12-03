@@ -10,16 +10,26 @@ import pickle
 import pymongo
 import firebase_admin
 from firebase_admin import credentials, storage
+import environ
+from . import alertManager
+from . import cropServices
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+MONGODB_URI = env('MONGODB_URI')
+FIREBASE_BUCKET_NAME = env('FIREBASE_BUCKET_NAME')
+CROPS_COLLECTION_NAME = env('CROPS_COLLECTION_NAME')
+DB_NAME = env('DB_NAME')
 
-
+client = pymongo.MongoClient(MONGODB_URI)
 #Define Db Name
-dbname = client['myFirstDatabase']
+dbname = client[DB_NAME]
 #Define Collection
-cropsCollection = dbname['crops']
+cropsCollection = dbname[CROPS_COLLECTION_NAME]
 
-cred = credentials.Certificate("cropAnalyzer/credentials.json")
-firebase_admin.initialize_app(cred,{'storageBucket': 'farmcare-8b04f.appspot.com'}) # connecting to firebase
+cred = credentials.Certificate("E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/credentials.json")
+firebase_admin.initialize_app(cred,{'storageBucket': FIREBASE_BUCKET_NAME}) # connecting to firebase
 
 
 def index(request):
@@ -210,3 +220,12 @@ def getSimilarCropsByName(CropName):
     else:
         return HttpResponse(status=204)
     
+@csrf_exempt
+def addAlert(request):
+    if (request.method == 'POST'):
+        json_data = json.loads(request.body)
+        return alertManager.setAlertMessage(json_data)
+
+@csrf_exempt
+def getCropsList(request):
+    return cropServices.getCropsList()
