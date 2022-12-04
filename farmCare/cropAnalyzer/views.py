@@ -28,7 +28,7 @@ dbname = client[DB_NAME]
 #Define Collection
 cropsCollection = dbname[CROPS_COLLECTION_NAME]
 
-cred = credentials.Certificate("E:/Ekanayaka/FarmCare/Crop-Analyzer/farmCare/cropAnalyzer/credentials.json")
+cred = credentials.Certificate("cropAnalyzer/credentials.json")
 firebase_admin.initialize_app(cred,{'storageBucket': FIREBASE_BUCKET_NAME}) # connecting to firebase
 
 
@@ -56,6 +56,7 @@ def predict(request):
 def trainModel():
     # Data preprocessing - loading initial dataset and treat null values
     data = pd.read_excel('https://storage.googleapis.com/farmcare-8b04f.appspot.com/cropAnalyzer/dataset.xlsx')
+    data.drop(data.filter(regex="Unname"),axis=1, inplace=True)
     print(data.head())
     data.drop(['RainFall - mm'], axis=1, inplace=True)
     data = data.dropna()
@@ -158,8 +159,11 @@ def addnewCrop(request):
     }
     #Modifying Excel
     originalDf = pd.read_excel('https://storage.googleapis.com/farmcare-8b04f.appspot.com/cropAnalyzer/dataset.xlsx')
+    #originalDf = pd.read_excel('cropAnalyzer/dataset.xlsx')
+    originalDf.drop(originalDf.filter(regex="Unname"),axis=1, inplace=True)
     originalDf = originalDf.append(newCrop, ignore_index=True)
-    originalDf.to_excel("cropAnalyzer/dataset.xlsx")
+    originalDf.drop(originalDf.filter(regex="Unname"),axis=1, inplace=True)
+    originalDf.to_excel("cropAnalyzer/dataset.xlsx" , index=False)
     #Upload file to firebase
     file_path = "cropAnalyzer/dataset.xlsx"
     bucket = storage.bucket() # storage bucket
