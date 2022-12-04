@@ -40,3 +40,14 @@ def setAlertMessage(data):
     response["Access-Control-Max-Age"] = "1000"
     response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
     return response
+
+def getAlertsList():
+    activeAlerts = alertsCollection.find()
+    list_cur = list(activeAlerts)
+    jsonResult = json.dumps(list_cur, default=str)
+    response = HttpResponse(jsonResult)
+    response["Access-Control-Allow-Origin"] = "*"
+    response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    response["Access-Control-Max-Age"] = "1000"
+    response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+    return response

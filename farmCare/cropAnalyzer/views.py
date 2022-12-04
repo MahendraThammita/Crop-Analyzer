@@ -110,11 +110,12 @@ def predictByModel(npArray):
     predicton = model.predict(npArray)
     return predicton
 
-
+@csrf_exempt
 def getSimilarCrops(request):
     if (request.method == 'GET'):
-        json_data = json.loads(request.body)
-        cropName = json_data['CropName']
+        cropName = request.GET.get('cropName')
+        # json_data = json.loads(request.body)
+        # cropName = json_data['CropName']
     
     if(cropName is not None and cropName != ""):
         affevtedCrop = cropsCollection.find_one({"Crop":cropName})
@@ -229,3 +230,7 @@ def addAlert(request):
 @csrf_exempt
 def getCropsList(request):
     return cropServices.getCropsList()
+
+@csrf_exempt
+def getAlertsList(request):
+    return alertManager.getAlertsList()

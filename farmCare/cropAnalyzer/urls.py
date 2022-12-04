@@ -9,4 +9,5 @@ urlpatterns = [
     path('getSimilarCrops',views.getSimilarCrops,name='getSimilarCrops'),
     path('addAlert',views.addAlert,name='addAlert'),
     path('getCropsList',views.getCropsList,name='getCropsList'),
+    path('getAlertsList',views.getAlertsList,name='getAlertsList'),
 ]
