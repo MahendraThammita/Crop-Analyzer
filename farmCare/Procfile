@@ -1,1 +1,3 @@
-web gunicorn farmCare.wsgi:apllication --log-file -
+web: gunicorn farmCare.wsgi:application --log-file - --log-level debug
+python manage.py collectstatic --noinput
+manage.py migrate
