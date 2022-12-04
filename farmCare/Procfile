@@ -1,0 +1,1 @@
+web gunicorn farmCare.wsgi:apllication --log-file -
