@@ -13,6 +13,7 @@ from firebase_admin import credentials, storage
 import environ
 from . import alertManager
 from . import cropServices
+from . import userHandler
 
 # Initialise environment variables
 env = environ.Env()
@@ -137,17 +138,17 @@ def getSimilarCrops(request):
 def addnewCrop(request):
     if (request.method == 'POST'):
         json_data = json.loads(request.body)
-        family = json_data['family']
-        temperature = json_data['temperature']
-        ph = json_data['ph']
-        zone = json_data['zone']
-        season = json_data['season']
-        familyText = json_data['familyText']
-        temperatureText = json_data['temperatureText']
-        phText = json_data['phText']
-        zoneText = json_data['zoneText']
-        seasonText = json_data['seasonText']
-        cropName = json_data['cropName']
+        family = json_data['data']['family']
+        temperature = json_data['data']['temperature']
+        ph = json_data['data']['ph']
+        zone = json_data['data']['zone']
+        season = json_data['data']['season']
+        familyText = json_data['data']['familyText']
+        temperatureText = json_data['data']['temperatureText']
+        phText = json_data['data']['phText']
+        zoneText = json_data['data']['zoneText']
+        seasonText = json_data['data']['seasonText']
+        cropName = json_data['data']['cropName']
     
     newCrop={
         "Crop": cropName,
@@ -238,3 +239,9 @@ def getCropsList(request):
 @csrf_exempt
 def getAlertsList(request):
     return alertManager.getAlertsList()
+
+@csrf_exempt
+def userLogin(request):
+    if (request.method == 'POST'):
+        json_data = json.loads(request.body)
+        return userHandler.userLogin(json_data)
