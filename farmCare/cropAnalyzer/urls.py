@@ -11,4 +11,6 @@ urlpatterns = [
     path('getCropsList',views.getCropsList,name='getCropsList'),
     path('getAlertsList',views.getAlertsList,name='getAlertsList'),
     path('userLogin',views.userLogin,name='userLogin'),
+    path('addOtherAlert',views.addOtherAlert,name='addOtherAlert'),
+    path('getOtherAlertsList',views.getOtherAlertsList,name='getOtherAlertsList'),
 ]

@@ -14,6 +14,7 @@ import environ
 from . import alertManager
 from . import cropServices
 from . import userHandler
+from . import otherAlertManager
 
 # Initialise environment variables
 env = environ.Env()
@@ -233,12 +234,22 @@ def addAlert(request):
         return alertManager.setAlertMessage(json_data)
 
 @csrf_exempt
+def addOtherAlert(request):
+    if (request.method == 'POST'):
+        json_data = json.loads(request.body)
+        return otherAlertManager.addOtherAlert(json_data)
+
+@csrf_exempt
 def getCropsList(request):
     return cropServices.getCropsList()
 
 @csrf_exempt
 def getAlertsList(request):
     return alertManager.getAlertsList()
+
+@csrf_exempt
+def getOtherAlertsList(request):
+    return otherAlertManager.getOtherAlertsList()
 
 @csrf_exempt
 def userLogin(request):
